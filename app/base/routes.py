@@ -18,12 +18,13 @@ from app.base.models import User
 
 from app.base.util import verify_pass
 
+
 @blueprint.route('/')
 def route_default():
     return redirect(url_for('base_blueprint.login'))
 
-## Login & Registration
 
+## Login & Registration
 @blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     login_form = LoginForm(request.form)
@@ -49,6 +50,7 @@ def login():
         return render_template( 'accounts/login.html',
                                 form=login_form)
     return redirect(url_for('home_blueprint.index'))
+
 
 @blueprint.route('/register', methods=['GET', 'POST'])
 def register():
@@ -87,6 +89,7 @@ def register():
 
     else:
         return render_template( 'accounts/register.html', form=create_account_form)
+
 
 @blueprint.route('/logout')
 def logout():

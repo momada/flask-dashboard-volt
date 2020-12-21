@@ -1,11 +1,15 @@
-# -*- encoding: utf-8 -*-
+ # -*- encoding: utf-8 -*-
 """
 Copyright (c) 2019 - present AppSeed.us
 """
  
 import hashlib, binascii, os
+import binascii
+import hashlib
+import os
 
-# Inspiration -> https://www.vitoshacademy.com/hashing-passwords-in-python/
+
+ # Inspiration -> https://www.vitoshacademy.com/hashing-passwords-in-python/
 
 def hash_pass( password ):
     """Hash a password for storing."""
