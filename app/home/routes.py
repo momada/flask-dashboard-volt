@@ -9,10 +9,12 @@ from flask_login import login_required, current_user
 from app import login_manager
 from jinja2 import TemplateNotFound
 
-@blueprint.route('/index')
+
+@blueprint.route('/home')
 @login_required
-def index():
-    return render_template('index.html', segment='index')
+def home():
+    return render_template('home.html', segment='home')
+
 
 @blueprint.route('/<template>')
 @login_required
@@ -20,14 +22,14 @@ def route_template(template):
 
     try:
 
-        if not template.endswith( '.html' ):
+        if not template.endswith('.html'):
             template += '.html'
 
         # Detect the current page
-        segment = get_segment( request )
+        segment = get_segment(request)
 
         # Serve the file (if exists) from app/templates/FILE.html
-        return render_template( template, segment=segment )
+        return render_template(template, segment=segment)
 
     except TemplateNotFound:
         return render_template('page-404.html'), 404
@@ -35,15 +37,16 @@ def route_template(template):
     except:
         return render_template('page-500.html'), 500
 
+
 # Helper - Extract current page name from request 
-def get_segment( request ): 
+def get_segment(req):
 
     try:
 
-        segment = request.path.split('/')[-1]
+        segment = req.path.split('/')[-1]
 
         if segment == '':
-            segment = 'index'
+            segment = 'home'
 
         return segment    
 
